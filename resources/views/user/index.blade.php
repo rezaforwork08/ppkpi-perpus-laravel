@@ -1,8 +1,11 @@
-<h1>Data User</h1>
+@extends('layout.app')
+@section('title', 'Data User')
+
+@section('content')
 <div align="right">
-    <a href="{{route('user.create')}}">Tambah</a>
+    <a href="{{route('user.create')}}" class="btn btn-primary">Tambah</a>
 </div>
-<table border="1" width="100%">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>No</th>
@@ -31,3 +34,4 @@
         @endforeach
     </tbody>
 </table>
+@endsection
