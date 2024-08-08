@@ -26,9 +26,10 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="../../index3.html" method="post">
+                <form action="{{route('actionLogin')}}" method="post">
+                    @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input required type="email" class="form-control" placeholder="Email"  name="email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -36,7 +37,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" required name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -54,7 +55,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button onclick="actionLogin()" type="submit" class="btn btn-primary btn-block button">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -78,6 +79,22 @@
     <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
+
+    <script>
+        let button = document.getElementByClassName('button')
+        button.addEventListener('click', function(){
+
+        });
+        $('.button').click(function(){
+
+        });
+        let button = $('.button');
+        
+        function actionLogin()
+        {
+
+        }
+    </script>
 </body>
 
 </html>
