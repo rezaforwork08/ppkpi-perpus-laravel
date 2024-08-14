@@ -17,6 +17,7 @@
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
+      
         <!-- Navbar -->
         @include('layout.inc.nav')
         <!-- /.navbar -->
@@ -26,6 +27,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            @include('sweetalert::alert')
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
@@ -99,6 +101,54 @@
     <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('assets/dist/js/demo.js')}}"></script>
+    {{-- @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"]) --}}
+    <script>
+        $('#tambah-row').click(function(){
+            let tbody = $("tbody");
+            let no = tbody.find("tr").length + 1, penerbit = $('#nama_penerbit').val(),
+            judul_buku = $("#buku_id").find("option:selected").text();
+            let newRow = "<tr>";
+                newRow += "<td>"+no+"</td>";
+                newRow += "<td>"+judul_buku+"</td>";
+                newRow += "<td>"+penerbit+"</td>";
+                newRow += "<td><button type='button' class='btn btn-danger btn-sm hapus-row'>Hapus Row</button></td>";
+                newRow += "</tr>"
+            tbody.append(newRow);
+
+            $('.hapus-row').click(function(){
+                $(this).closest('tr').remove();
+            })
+        });
+
+        $('#category_id').change(function(){
+            // let id = document.getElementsById('category_id').value;
+            // let category_name = document.getElementsById('category_id').text;
+            // const nama = "reza";
+            // nama = "bambang";
+            // console.log(name);
+            let category_id = $(this).val(), option ="";
+            console.log(category_id);
+            let category_name = $(this).find('option:selected').text();
+
+            $.ajax({
+                type:"get",
+                dataType:"json",
+                url: "/getBuku/" + category_id,
+                success:function(data){
+                    option += "<option value=''>Pilih Judul Buku</option>"
+                    $.each(data.data, function(index, value){
+                        $('#nama_penerbit').val(value.penerbit);
+                        // console.log(value);
+                        option += "<option value="+value.id+">"+value.judul+"</option>"
+                    });
+                    // console.log(option);
+                    $('#buku_id').html(option);
+                }
+            });
+
+
+        });
+    </script>
 </body>
 
 </html>

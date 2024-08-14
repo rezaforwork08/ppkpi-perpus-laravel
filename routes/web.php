@@ -19,6 +19,9 @@ Route::post('actionLogin', [\App\Http\Controllers\LoginController::class, 'actio
 Route::resource('dashboard', \App\Http\Controllers\DashboardController::class);
 Route::resource('category', \App\Http\Controllers\CategoryController::class);
 Route::resource('book', \App\Http\Controllers\BooksController::class);
+Route::resource('pinjam', \App\Http\Controllers\PinjamController::class);
+
+Route::get('getBuku/{category_id}', [\App\Http\Controllers\AjaxController::class, 'getDataBuku']);
 // get, post,put, delete
 Route::resource('belajar', \App\Http\Controllers\BelajarController::class);
 Route::resource('user', \App\Http\Controllers\UserController::class);

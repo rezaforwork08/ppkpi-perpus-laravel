@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Alert;
+// use RealRashid\SweetAlert\Facades\Alert;
 
 
 class LoginController extends Controller
@@ -16,10 +18,16 @@ class LoginController extends Controller
 
     public function actionLogin(Request $request)
     {
+        // return $request;
         $email = $request->email;
         $password = $request->password;
         $credentials = $request->only(['email' => $email, 'password' => $request->password]);
         $user = User::where('email', $email)->first();
+        if (!$user) {
+            // return "tesss";
+            Alert::warning('Upss', 'Mohon Periksa email dan password anda!!');
+            return  redirect()->back()->withErrors('Login Gagal. Mohon periksa email dan password anda.');
+        }
 
 
         // 12345678
@@ -29,6 +37,7 @@ class LoginController extends Controller
             return redirect()->intended('dashboard');
         } else {
             return  redirect()->back()->withErrors('Login Gagal. Mohon periksa email dan password anda.');
+            // return redirect()->to()->with('messsage', 'isi pesan');
         }
     }
 }
