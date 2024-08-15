@@ -18,4 +18,14 @@ class AjaxController extends Controller
             //throw $th;
         }
     }
+
+    public function getBuku($buku_id)
+    {
+        try {
+            $book = Book::where('id', $buku_id)->first();
+            return response()->json(['data' => $book, 'message' => 'Fetch Success']);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()]);
+        }
+    }
 }

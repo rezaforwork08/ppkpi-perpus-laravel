@@ -22,6 +22,7 @@ Route::resource('book', \App\Http\Controllers\BooksController::class);
 Route::resource('pinjam', \App\Http\Controllers\PinjamController::class);
 
 Route::get('getBuku/{category_id}', [\App\Http\Controllers\AjaxController::class, 'getDataBuku']);
+Route::get('getBook/{buku_id}', [\App\Http\Controllers\AjaxController::class, 'getBuku']);
 // get, post,put, delete
 Route::resource('belajar', \App\Http\Controllers\BelajarController::class);
 Route::resource('user', \App\Http\Controllers\UserController::class);
